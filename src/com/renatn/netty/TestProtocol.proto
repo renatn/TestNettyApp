@@ -1,0 +1,48 @@
+package com.renatn.netty;
+
+option optimize_for = SPEED;
+
+enum RequestType {
+    REGISTER = 0;
+    LOGIN = 1;
+    QUIT = 2;
+    ECHO = 3;
+    TIME = 4;
+}
+
+message MyRequest {
+
+    required RequestType requestType = 1;
+
+    message Register {
+        required string username = 2;
+        required string password = 3;
+    }
+
+    message Login {
+        required string username = 2;
+        required string password = 3;
+    }
+
+    optional Register register = 2;
+    optional Login login = 3;
+
+}
+
+message MyResponse {
+
+    enum StatusCode {
+        OK = 1;
+        ERROR = 2;
+    }
+
+    required StatusCode status = 1;
+    required string response = 2;
+    optional string sessionId = 3;
+}
+
+
+
+
+
+
