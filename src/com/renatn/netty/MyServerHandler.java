@@ -18,8 +18,6 @@ import static com.renatn.netty.TestProtocol.MyResponse;
  */
 public class MyServerHandler extends SimpleChannelHandler {
 
-    private final static Logger logger = Logger.getLogger(MyServerHandler.class.getName());
-
     private final static Map<String, String> users = new HashMap<String, String>();
     private final static Map<String, String> session = new HashMap<String, String>();
 
