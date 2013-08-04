@@ -29,7 +29,8 @@ public class MyClientHandler extends SimpleChannelUpstreamHandler {
         request.setRequestType(RequestType.LOGIN);
         request.setLogin(loginBuilder.build());
 
-        return sendRequest(request.build());
+        MyResponse response = sendRequest(request.build());
+        return response.getSessionId();
     }
 
     public String register(String userName, String password) {
@@ -41,10 +42,24 @@ public class MyClientHandler extends SimpleChannelUpstreamHandler {
         request.setRequestType(RequestType.REGISTER);
         request.setRegister(registerBuilder.build());
 
-        return sendRequest(request.build());
+        return sendRequest(request.build()).getResponse();
     }
 
-    private String sendRequest(Object request) {
+    public String time(String sessionId) {
+        MyRequest.Builder request = MyRequest.newBuilder();
+        request.setRequestType(RequestType.TIME);
+        request.setSessionId(sessionId);
+        return sendRequest(request.build()).getResponse();
+    }
+
+    public String quit(String sessionId) {
+        MyRequest.Builder request = MyRequest.newBuilder();
+        request.setRequestType(RequestType.QUIT);
+        request.setSessionId(sessionId);
+        return sendRequest(request.build()).getResponse();
+    }
+
+    private MyResponse sendRequest(Object request) {
         channel.write(request);
 
         MyResponse response;
@@ -63,7 +78,7 @@ public class MyClientHandler extends SimpleChannelUpstreamHandler {
             Thread.currentThread().interrupt();
         }
 
-        return response.getResponse();
+        return response;
 
     }
 

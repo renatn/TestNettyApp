@@ -2,8 +2,10 @@ package com.renatn.netty;
 
 import org.jboss.netty.channel.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import static com.renatn.netty.TestProtocol.MyRequest;
@@ -19,6 +21,7 @@ public class MyServerHandler extends SimpleChannelHandler {
     private final static Logger logger = Logger.getLogger(MyServerHandler.class.getName());
 
     private final static Map<String, String> users = new HashMap<String, String>();
+    private final static Map<String, String> session = new HashMap<String, String>();
 
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {
@@ -46,10 +49,27 @@ public class MyServerHandler extends SimpleChannelHandler {
                     return;
                 }
 
-                MyResponse ok = ok("User successfully login.", sessionId);
-                e.getChannel().write(ok);
+                e.getChannel().write(ok("User successfully login.", sessionId));
                 break;
+            case QUIT:
 
+                try {
+                    logout(request.getSessionId());
+                } catch (ServiceException ex) {
+                    e.getChannel().write(error(ex.getMessage()));
+                    return;
+                }
+                e.getChannel().write(ok("Logout successfully."));
+                break;
+            case TIME:
+                String user = session.get(request.getSessionId());
+                if ( user == null) {
+                    e.getChannel().write(error("Unauthorized access"));
+                    return;
+                }
+
+                e.getChannel().write(ok((new Date()).toString(), request.getSessionId()));
+                break;
             default:
                 e.getChannel().write(error("Unsupported request type."));
         }
@@ -59,7 +79,6 @@ public class MyServerHandler extends SimpleChannelHandler {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) throws Exception {
         e.getCause().printStackTrace();
-
         Channel channel = e.getChannel();
         channel.close();
 
@@ -83,7 +102,6 @@ public class MyServerHandler extends SimpleChannelHandler {
         return errorBuilder.build();
     }
 
-
     private void register(String username, String password) throws ServiceException {
         String user = users.get(username);
         if (user != null) {
@@ -99,9 +117,18 @@ public class MyServerHandler extends SimpleChannelHandler {
             throw new ServiceException("Invalid username or password");
         }
 
-        // TODO insert to session
-        return "42";
+        String sessionId = UUID.randomUUID().toString();
+        session.put(sessionId, username) ;
+        return sessionId;
 
+    }
+
+    private void logout(String sessionId)  throws ServiceException {
+        String user = session.get(sessionId);
+        if (user == null) {
+            throw new ServiceException("Unauthorized access");
+        }
+        session.remove(sessionId);
     }
 
 }

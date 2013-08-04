@@ -130,31 +130,46 @@ public final class TestProtocol {
      */
     com.renatn.netty.TestProtocol.RequestType getRequestType();
 
-    // optional .com.renatn.netty.MyRequest.Register register = 2;
+    // optional string sessionId = 2;
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+     * <code>optional string sessionId = 2;</code>
+     */
+    boolean hasSessionId();
+    /**
+     * <code>optional string sessionId = 2;</code>
+     */
+    java.lang.String getSessionId();
+    /**
+     * <code>optional string sessionId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSessionIdBytes();
+
+    // optional .com.renatn.netty.MyRequest.Register register = 3;
+    /**
+     * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
      */
     boolean hasRegister();
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
      */
     com.renatn.netty.TestProtocol.MyRequest.Register getRegister();
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
      */
     com.renatn.netty.TestProtocol.MyRequest.RegisterOrBuilder getRegisterOrBuilder();
 
-    // optional .com.renatn.netty.MyRequest.Login login = 3;
+    // optional .com.renatn.netty.MyRequest.Login login = 4;
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
      */
     boolean hasLogin();
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
      */
     com.renatn.netty.TestProtocol.MyRequest.Login getLogin();
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
      */
     com.renatn.netty.TestProtocol.MyRequest.LoginOrBuilder getLoginOrBuilder();
   }
@@ -221,8 +236,13 @@ public final class TestProtocol {
               break;
             }
             case 18: {
+              bitField0_ |= 0x00000002;
+              sessionId_ = input.readBytes();
+              break;
+            }
+            case 26: {
               com.renatn.netty.TestProtocol.MyRequest.Register.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
                 subBuilder = register_.toBuilder();
               }
               register_ = input.readMessage(com.renatn.netty.TestProtocol.MyRequest.Register.PARSER, extensionRegistry);
@@ -230,12 +250,12 @@ public final class TestProtocol {
                 subBuilder.mergeFrom(register_);
                 register_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               break;
             }
-            case 26: {
+            case 34: {
               com.renatn.netty.TestProtocol.MyRequest.Login.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
                 subBuilder = login_.toBuilder();
               }
               login_ = input.readMessage(com.renatn.netty.TestProtocol.MyRequest.Login.PARSER, extensionRegistry);
@@ -243,7 +263,7 @@ public final class TestProtocol {
                 subBuilder.mergeFrom(login_);
                 login_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000008;
               break;
             }
           }
@@ -1588,45 +1608,88 @@ public final class TestProtocol {
       return requestType_;
     }
 
-    // optional .com.renatn.netty.MyRequest.Register register = 2;
-    public static final int REGISTER_FIELD_NUMBER = 2;
-    private com.renatn.netty.TestProtocol.MyRequest.Register register_;
+    // optional string sessionId = 2;
+    public static final int SESSIONID_FIELD_NUMBER = 2;
+    private java.lang.Object sessionId_;
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+     * <code>optional string sessionId = 2;</code>
      */
-    public boolean hasRegister() {
+    public boolean hasSessionId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+     * <code>optional string sessionId = 2;</code>
+     */
+    public java.lang.String getSessionId() {
+      java.lang.Object ref = sessionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          sessionId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string sessionId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionIdBytes() {
+      java.lang.Object ref = sessionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional .com.renatn.netty.MyRequest.Register register = 3;
+    public static final int REGISTER_FIELD_NUMBER = 3;
+    private com.renatn.netty.TestProtocol.MyRequest.Register register_;
+    /**
+     * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
+     */
+    public boolean hasRegister() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
      */
     public com.renatn.netty.TestProtocol.MyRequest.Register getRegister() {
       return register_;
     }
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
      */
     public com.renatn.netty.TestProtocol.MyRequest.RegisterOrBuilder getRegisterOrBuilder() {
       return register_;
     }
 
-    // optional .com.renatn.netty.MyRequest.Login login = 3;
-    public static final int LOGIN_FIELD_NUMBER = 3;
+    // optional .com.renatn.netty.MyRequest.Login login = 4;
+    public static final int LOGIN_FIELD_NUMBER = 4;
     private com.renatn.netty.TestProtocol.MyRequest.Login login_;
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
      */
     public boolean hasLogin() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
      */
     public com.renatn.netty.TestProtocol.MyRequest.Login getLogin() {
       return login_;
     }
     /**
-     * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+     * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
      */
     public com.renatn.netty.TestProtocol.MyRequest.LoginOrBuilder getLoginOrBuilder() {
       return login_;
@@ -1634,6 +1697,7 @@ public final class TestProtocol {
 
     private void initFields() {
       requestType_ = com.renatn.netty.TestProtocol.RequestType.REGISTER;
+      sessionId_ = "";
       register_ = com.renatn.netty.TestProtocol.MyRequest.Register.getDefaultInstance();
       login_ = com.renatn.netty.TestProtocol.MyRequest.Login.getDefaultInstance();
     }
@@ -1669,10 +1733,13 @@ public final class TestProtocol {
         output.writeEnum(1, requestType_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, register_);
+        output.writeBytes(2, getSessionIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, login_);
+        output.writeMessage(3, register_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeMessage(4, login_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1689,11 +1756,15 @@ public final class TestProtocol {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, register_);
+          .computeBytesSize(2, getSessionIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, login_);
+          .computeMessageSize(3, register_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, login_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1815,18 +1886,20 @@ public final class TestProtocol {
         super.clear();
         requestType_ = com.renatn.netty.TestProtocol.RequestType.REGISTER;
         bitField0_ = (bitField0_ & ~0x00000001);
+        sessionId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (registerBuilder_ == null) {
           register_ = com.renatn.netty.TestProtocol.MyRequest.Register.getDefaultInstance();
         } else {
           registerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (loginBuilder_ == null) {
           login_ = com.renatn.netty.TestProtocol.MyRequest.Login.getDefaultInstance();
         } else {
           loginBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -1862,13 +1935,17 @@ public final class TestProtocol {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
+        result.sessionId_ = sessionId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
         if (registerBuilder_ == null) {
           result.register_ = register_;
         } else {
           result.register_ = registerBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
         }
         if (loginBuilder_ == null) {
           result.login_ = login_;
@@ -1893,6 +1970,11 @@ public final class TestProtocol {
         if (other == com.renatn.netty.TestProtocol.MyRequest.getDefaultInstance()) return this;
         if (other.hasRequestType()) {
           setRequestType(other.getRequestType());
+        }
+        if (other.hasSessionId()) {
+          bitField0_ |= 0x00000002;
+          sessionId_ = other.sessionId_;
+          onChanged();
         }
         if (other.hasRegister()) {
           mergeRegister(other.getRegister());
@@ -1979,18 +2061,92 @@ public final class TestProtocol {
         return this;
       }
 
-      // optional .com.renatn.netty.MyRequest.Register register = 2;
+      // optional string sessionId = 2;
+      private java.lang.Object sessionId_ = "";
+      /**
+       * <code>optional string sessionId = 2;</code>
+       */
+      public boolean hasSessionId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string sessionId = 2;</code>
+       */
+      public java.lang.String getSessionId() {
+        java.lang.Object ref = sessionId_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          sessionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string sessionId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSessionIdBytes() {
+        java.lang.Object ref = sessionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string sessionId = 2;</code>
+       */
+      public Builder setSessionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        sessionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string sessionId = 2;</code>
+       */
+      public Builder clearSessionId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        sessionId_ = getDefaultInstance().getSessionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string sessionId = 2;</code>
+       */
+      public Builder setSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        sessionId_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional .com.renatn.netty.MyRequest.Register register = 3;
       private com.renatn.netty.TestProtocol.MyRequest.Register register_ = com.renatn.netty.TestProtocol.MyRequest.Register.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.renatn.netty.TestProtocol.MyRequest.Register, com.renatn.netty.TestProtocol.MyRequest.Register.Builder, com.renatn.netty.TestProtocol.MyRequest.RegisterOrBuilder> registerBuilder_;
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       public boolean hasRegister() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       public com.renatn.netty.TestProtocol.MyRequest.Register getRegister() {
         if (registerBuilder_ == null) {
@@ -2000,7 +2156,7 @@ public final class TestProtocol {
         }
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       public Builder setRegister(com.renatn.netty.TestProtocol.MyRequest.Register value) {
         if (registerBuilder_ == null) {
@@ -2012,11 +2168,11 @@ public final class TestProtocol {
         } else {
           registerBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       public Builder setRegister(
           com.renatn.netty.TestProtocol.MyRequest.Register.Builder builderForValue) {
@@ -2026,15 +2182,15 @@ public final class TestProtocol {
         } else {
           registerBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       public Builder mergeRegister(com.renatn.netty.TestProtocol.MyRequest.Register value) {
         if (registerBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               register_ != com.renatn.netty.TestProtocol.MyRequest.Register.getDefaultInstance()) {
             register_ =
               com.renatn.netty.TestProtocol.MyRequest.Register.newBuilder(register_).mergeFrom(value).buildPartial();
@@ -2045,11 +2201,11 @@ public final class TestProtocol {
         } else {
           registerBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       public Builder clearRegister() {
         if (registerBuilder_ == null) {
@@ -2058,19 +2214,19 @@ public final class TestProtocol {
         } else {
           registerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       public com.renatn.netty.TestProtocol.MyRequest.Register.Builder getRegisterBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getRegisterFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       public com.renatn.netty.TestProtocol.MyRequest.RegisterOrBuilder getRegisterOrBuilder() {
         if (registerBuilder_ != null) {
@@ -2080,7 +2236,7 @@ public final class TestProtocol {
         }
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Register register = 2;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Register register = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.renatn.netty.TestProtocol.MyRequest.Register, com.renatn.netty.TestProtocol.MyRequest.Register.Builder, com.renatn.netty.TestProtocol.MyRequest.RegisterOrBuilder> 
@@ -2096,18 +2252,18 @@ public final class TestProtocol {
         return registerBuilder_;
       }
 
-      // optional .com.renatn.netty.MyRequest.Login login = 3;
+      // optional .com.renatn.netty.MyRequest.Login login = 4;
       private com.renatn.netty.TestProtocol.MyRequest.Login login_ = com.renatn.netty.TestProtocol.MyRequest.Login.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.renatn.netty.TestProtocol.MyRequest.Login, com.renatn.netty.TestProtocol.MyRequest.Login.Builder, com.renatn.netty.TestProtocol.MyRequest.LoginOrBuilder> loginBuilder_;
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       public boolean hasLogin() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       public com.renatn.netty.TestProtocol.MyRequest.Login getLogin() {
         if (loginBuilder_ == null) {
@@ -2117,7 +2273,7 @@ public final class TestProtocol {
         }
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       public Builder setLogin(com.renatn.netty.TestProtocol.MyRequest.Login value) {
         if (loginBuilder_ == null) {
@@ -2129,11 +2285,11 @@ public final class TestProtocol {
         } else {
           loginBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       public Builder setLogin(
           com.renatn.netty.TestProtocol.MyRequest.Login.Builder builderForValue) {
@@ -2143,15 +2299,15 @@ public final class TestProtocol {
         } else {
           loginBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       public Builder mergeLogin(com.renatn.netty.TestProtocol.MyRequest.Login value) {
         if (loginBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
               login_ != com.renatn.netty.TestProtocol.MyRequest.Login.getDefaultInstance()) {
             login_ =
               com.renatn.netty.TestProtocol.MyRequest.Login.newBuilder(login_).mergeFrom(value).buildPartial();
@@ -2162,11 +2318,11 @@ public final class TestProtocol {
         } else {
           loginBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       public Builder clearLogin() {
         if (loginBuilder_ == null) {
@@ -2175,19 +2331,19 @@ public final class TestProtocol {
         } else {
           loginBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       public com.renatn.netty.TestProtocol.MyRequest.Login.Builder getLoginBuilder() {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getLoginFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       public com.renatn.netty.TestProtocol.MyRequest.LoginOrBuilder getLoginOrBuilder() {
         if (loginBuilder_ != null) {
@@ -2197,7 +2353,7 @@ public final class TestProtocol {
         }
       }
       /**
-       * <code>optional .com.renatn.netty.MyRequest.Login login = 3;</code>
+       * <code>optional .com.renatn.netty.MyRequest.Login login = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.renatn.netty.TestProtocol.MyRequest.Login, com.renatn.netty.TestProtocol.MyRequest.Login.Builder, com.renatn.netty.TestProtocol.MyRequest.LoginOrBuilder> 
@@ -3068,19 +3224,20 @@ public final class TestProtocol {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022TestProtocol.proto\022\020com.renatn.netty\"\206" +
+      "\n\022TestProtocol.proto\022\020com.renatn.netty\"\231" +
       "\002\n\tMyRequest\0222\n\013requestType\030\001 \002(\0162\035.com." +
-      "renatn.netty.RequestType\0226\n\010register\030\002 \001" +
-      "(\0132$.com.renatn.netty.MyRequest.Register" +
-      "\0220\n\005login\030\003 \001(\0132!.com.renatn.netty.MyReq" +
-      "uest.Login\032.\n\010Register\022\020\n\010username\030\002 \002(\t" +
-      "\022\020\n\010password\030\003 \002(\t\032+\n\005Login\022\020\n\010username\030" +
-      "\002 \002(\t\022\020\n\010password\030\003 \002(\t\"\213\001\n\nMyResponse\0227" +
-      "\n\006status\030\001 \002(\0162\'.com.renatn.netty.MyResp" +
-      "onse.StatusCode\022\020\n\010response\030\002 \002(\t\022\021\n\tses",
-      "sionId\030\003 \001(\t\"\037\n\nStatusCode\022\006\n\002OK\020\001\022\t\n\005ER" +
-      "ROR\020\002*D\n\013RequestType\022\014\n\010REGISTER\020\000\022\t\n\005LO" +
-      "GIN\020\001\022\010\n\004QUIT\020\002\022\010\n\004ECHO\020\003\022\010\n\004TIME\020\004B\002H\001"
+      "renatn.netty.RequestType\022\021\n\tsessionId\030\002 " +
+      "\001(\t\0226\n\010register\030\003 \001(\0132$.com.renatn.netty" +
+      ".MyRequest.Register\0220\n\005login\030\004 \001(\0132!.com" +
+      ".renatn.netty.MyRequest.Login\032.\n\010Registe" +
+      "r\022\020\n\010username\030\002 \002(\t\022\020\n\010password\030\003 \002(\t\032+\n" +
+      "\005Login\022\020\n\010username\030\002 \002(\t\022\020\n\010password\030\003 \002" +
+      "(\t\"\213\001\n\nMyResponse\0227\n\006status\030\001 \002(\0162\'.com." +
+      "renatn.netty.MyResponse.StatusCode\022\020\n\010re",
+      "sponse\030\002 \002(\t\022\021\n\tsessionId\030\003 \001(\t\"\037\n\nStatu" +
+      "sCode\022\006\n\002OK\020\001\022\t\n\005ERROR\020\002*D\n\013RequestType\022" +
+      "\014\n\010REGISTER\020\000\022\t\n\005LOGIN\020\001\022\010\n\004QUIT\020\002\022\010\n\004EC" +
+      "HO\020\003\022\010\n\004TIME\020\004B\002H\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3092,7 +3249,7 @@ public final class TestProtocol {
           internal_static_com_renatn_netty_MyRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_renatn_netty_MyRequest_descriptor,
-              new java.lang.String[] { "RequestType", "Register", "Login", });
+              new java.lang.String[] { "RequestType", "SessionId", "Register", "Login", });
           internal_static_com_renatn_netty_MyRequest_Register_descriptor =
             internal_static_com_renatn_netty_MyRequest_descriptor.getNestedTypes().get(0);
           internal_static_com_renatn_netty_MyRequest_Register_fieldAccessorTable = new

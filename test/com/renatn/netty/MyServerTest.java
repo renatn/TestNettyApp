@@ -57,9 +57,7 @@ public class MyServerTest {
 
     @Test
     public void shouldRegister() throws Exception {
-
         MyClientHandler handler = channel.getPipeline().get(MyClientHandler.class);
-
         String response = handler.register("foo", "bar");
         System.out.println("Response: " + response);
     }
@@ -67,12 +65,40 @@ public class MyServerTest {
     @Test
     public void shouldLogin() throws Exception {
         MyClientHandler handler = channel.getPipeline().get(MyClientHandler.class);
-
-        String response = handler.login("foo", "b00ar");
-        System.out.println("Response: " + response);
-
+        String sessionId = handler.login("foo", "bar");
+        System.out.println("Session ID: " + sessionId);
     }
 
+    @Test
+    public void shouldGetTime() throws Exception {
+        MyClientHandler handler = channel.getPipeline().get(MyClientHandler.class);
+        String sessionId = handler.login("foo", "bar");
+        System.out.println("Login successfully. Requesting current time....");
+        String time = handler.time(sessionId);
+        System.out.println("Now: " + time);
+    }
 
+    @Test
+    public void shouldNotGetTime() throws Exception {
+        MyClientHandler handler = channel.getPipeline().get(MyClientHandler.class);
+        String time = handler.time("abcd");
+        System.out.println("Now: " + time);
+    }
+
+    @Test
+    public void shouldLogout() throws Exception {
+        MyClientHandler handler = channel.getPipeline().get(MyClientHandler.class);
+        String sessionId = handler.login("foo", "bar");
+        System.out.println("Login successfully. Doing logout....");
+        String response = handler.quit(sessionId);
+        System.out.println("Result: " + response);
+    }
+
+    @Test
+    public void shouldNotLogout() throws Exception {
+        MyClientHandler handler = channel.getPipeline().get(MyClientHandler.class);
+        String response = handler.quit("qwertyuion");
+        System.out.println("Result: " + response);
+    }
 
 }

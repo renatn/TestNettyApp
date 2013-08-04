@@ -24,8 +24,10 @@ message MyRequest {
         required string password = 3;
     }
 
-    optional Register register = 2;
-    optional Login login = 3;
+    optional string sessionId = 2;
+
+    optional Register register = 3;
+    optional Login login = 4;
 
 }
 
